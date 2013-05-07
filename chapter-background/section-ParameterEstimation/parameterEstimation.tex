@@ -1,0 +1,21 @@
+\label{section:Parameter estimation}
+Parameter estimation \cite{Heinrich04parameterestimation} is the problem of finding the parameters $\theta$ for a set of distributions that best explains the observations $X$. 
+The dataset $X$ $=\{x_{i}\}_{i=1}^{|X|}$ can be considered as a set of observations generated independently and identically distributed realizations of a random variable. The parameters $\theta$, depends on the distributions considered, for example, Multinomial distribution, $\theta$ $= \{p_{i}\}_{i=1}^{i=D}$, where D is the cardinality of the possible outcomes.
+
+The joint distribution $P(X,\theta)$ describes the probability of the observations for different combinations of the vector $\theta$. Bayes theorem gives the relationship between the probabilities $X$ and $\theta$ as below:
+\begin{equation}
+\label{equ:bayes}
+P(\theta|X) = \frac{P(X|\theta) P(\theta)}{P(X)} 
+\end{equation}
+The interpretation of the distributions in Eq. \ref{equ:bayes} is given below:
+\begin{equation}
+posterior ~\alpha \ liklihood \times prior
+\end{equation}
+Below, we explain some of the methods for parameter estimation. We will start with simple Maximum Liklihood Estimation (MLE) and then describe how prior belief can be included in the estimation. 
+
+\subsection{MLE}
+\label{section:MLE}
+\input{chapter-background/section-ParameterEstimation/MLE}
+
+\subsection{Maximum a posteriori estimation}
+\input{chapter-background/section-ParameterEstimation/MAP}

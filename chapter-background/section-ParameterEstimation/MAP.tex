@@ -1,0 +1,21 @@
+Maximum a posteriori (MAP) estimation is similar to MLE but also incorporates a mechanism to add prior belief in the form of a prior distribution. In MAP, the parameters of the model are obtained by maximizing the posterior distribution in Eq. \ref{equ:bayes} with respect to the model parameters $\theta$
+\begin{eqnarray}
+\theta_{MAP} & = & \arg\!\max_\theta(P(X|\theta) \cdot P(\theta)) \ \ \ \ \mid \scalebox{0.75}{$ P(X) \neq f(\theta)$} \\
+& = & \arg\!\max_\theta(\sum_{i=1}^{N}log(P(x_{i}|\theta)) + log(P(\theta)))
+\label{equ:MAP}
+\end{eqnarray}
+Continuing with the coin example as in MLE, the prior distribution $P(\theta)$ is represented by the Beta distribution(explained in Section \ref{section:conjugate priors}) with hyperparameters $\alpha$ and $\beta$ as below:
+\begin{eqnarray}
+P(\theta) & = & \frac{\theta^{\alpha}\cdot(1-\theta)^{\beta}}{B(\alpha,\beta)} \ \ \ \ \mid \scalebox{0.75}{$B(\alpha,\beta)$ = beta function}
+\end{eqnarray}
+\begin{equation}
+\label{equ:prior}
+\frac{\partial}{\partial\theta}P(\theta) = \frac{\alpha-1}{\theta} + \frac{\beta-1}{\theta}
+\end{equation}
+Substituting Eq. \ref{equ:ML} and \ref{equ:prior} in \ref{equ:MAP} and simplifying, we obtain,
+\begin{equation}
+\label{equ:MAP estimate}
+\theta_{MAP} = \frac{x^{1}+\alpha-1}{N+\alpha-1+\beta-1}
+\end{equation}
+From the MAP estimate in Eq. \ref{equ:MAP estimate}, we can see that, the addition of prior distribution is just including past experimental results or belief.
+The addition of prior belief acts like regularization to the MLE estimate

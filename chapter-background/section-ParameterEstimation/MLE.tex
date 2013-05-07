@@ -1,0 +1,39 @@
+MLE is the method of finding the parameters of the model that maximizes the probability of the observations(liklihood) under the resulting distribution. The liklihood is,
+\begin{equation}
+\ell(\theta|X) = \prod _{i=1}^{i=|X|} P(x_{i}|\theta)
+\end{equation}
+Because of the product, it is often mathematically convenient to express the liklihood, $\ell$, as the log-liklihood,
+\begin{equation}
+L(\theta|X) = \sum_{i=1}^{i=|X|} log(P(x_{i}|\theta))
+\end{equation}
+The MLE can then be formulated as,
+\begin{equation}
+\label{equ:log-liklihood}
+\theta_{ML} = \arg \! \max_\theta(L(\theta|X))
+\end{equation}
+
+The parameter $\theta$ then can be estimated by solving the Eq. \ref{equ:log-liklihood} as follows:
+\begin{equation}
+\frac{\partial}{\partial\theta_{d}} L(\theta|X) = 0; \forall \theta_{d} \in \theta
+\end{equation}
+As an example, consider a set $X$ of $N$ bernoulli experiments of an unfair coin toss with unknown parameter $\theta$. The probability of the event $c$, for a single experiment, for the random variable(r.v) $C$ is,
+\begin{equation}
+P(X=x|\theta) = \theta^{x}\cdot\theta^{1-x} 
+\end{equation}
+where $x=1$ is heads and $x=0$ is tails.
+The MLE for $\theta$ can be found by solving Eq. \ref{equ:log-liklihood},
+\begin{eqnarray}
+L & = & \sum_{i=1}^{i=N}(log(P(X=x|\theta))) \\
+ & = & (n^{1}log(P(X=1|\theta))) + n^{0}log(P(X=0|\theta)))
+\end{eqnarray}
+where $n^{1}$ denotes the number of heads and $n^{0}$, the number of tails.
+\begin{equation}
+\frac{\partial}{\partial\theta}(L) = \frac{x^{1}}{\theta} - \frac{x^{0}}{1-\theta}=0 
+\end{equation}
+\begin{equation}
+\label{equ:ML}
+\theta_{ML} = \frac{x^{1}}{x^{1}+x^{0}} = \frac{x^{1}}{N} 
+\end{equation}
+which is the ratio of heads to the total number of samples. 
+
+It can be seen from Eq. \ref{equ:ML}, the MLE estimates parameters which best explains the observations. If the observations or the sample dataset(subset of sample space) is not a good representative of the population(sample sapce) then the MLE estimate approach overfits the parameters to the sample dataset.

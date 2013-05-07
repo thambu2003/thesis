@@ -1,0 +1,37 @@
+Expectation Maximization(EM) algorithm is an iterative approach for parameter estimation for incomplete dataset. The missing values in the data corresponds to unobserved variables which are also know as hidden or latent variables. Each iteration of the EM algorithm consists of two steps: The E-step and the M-step. In the E-step, the missing data is estimated with the current estimate of the parameters. In the M-step, the liklihood function is maximized based on the estimate obtained in the E-step for the missing data.
+Consider a set $X$ of observed data, a set $Z$ of unobserved data and $\theta$ be a vector of unknow model parameters. The log-liklihood of the observed data is given below:
+\begin{equation}
+\label{eqn:EM-likli}
+L(\theta|X) = \sum_{z}P(X|z,\theta)P(z|\theta)
+\end{equation}
+As explained previously, EM algorithm iteratively maximizes $L(\theta|X)$. Assume that after the $n^{th}$ iteration the parameters are $\theta_{n}$. Since the objective is to maximize Eq \ref{eqn:EM-likli}, the updated estimate for the model parameters $\theta$ should satisfy,
+$L(\theta)$ $\geq$ $L(\theta_{n})$
+Equivalently, we can maximize the difference:
+\begin{equation}
+\label{equ:diff}
+L(\theta) - L(\theta_{n})= \Delta(\theta|\theta_{n}) = log(P(X|\theta)) - log(P(X|\theta_{n}))
+\end{equation}
+Simplifying \ref{equ:diff} we get:
+\begin{equation}
+\Delta(\theta|\theta_{n}) = \sum_{z}P(z|X,\theta)log(P(z|X,\theta_{n})\cdot P(X|\theta_{n}))
+\end{equation}
+\begin{equation}
+L(\theta) \geq \Delta(\theta|\theta_{n}) + L(\theta_{n})
+\end{equation}
+For convenience let:
+\begin{equation}
+Q(\theta|\theta_{n}) = \Delta(\theta |\theta_{n}) + L(\theta_{n})
+\end{equation}
+The function $Q(\theta|\theta_{n})$ called Q-function, is bounded by the liklihood $L(\theta)$. Our objective is to choose $\theta$ that maximizes the Q-function. Any $\theta$ that maximizes the Q-function also maximizes $L(\theta)$. We denote this updated value of $\theta$ as $\theta_{n+1}$
+\begin{align*}
+\label{equ:EM_algo}
+\theta_{n+1} & =  \arg\max_{\theta}(Q(\theta|\theta_{n})) \\
+ & =  \arg\max_{\theta}(\sum_{z}P(z|X,\theta)\cdot P(X,z|\theta))) \addtag
+\end{align*}
+Thus from Eq. \ref{equ:EM_algo} the steps of the EM algorithm are evident. The following steps are iterated untill convergence:
+\begin{enumerate}
+\item E-step: Calculate the conditional expectation $\sum_{z}P(z|X,\theta)\cdot P(X,z|\theta))$
+\item M-step: Maximize Eq. \ref{equ:EM_algo} with respect to $\theta$
+\end{enumerate}
+
+ 
